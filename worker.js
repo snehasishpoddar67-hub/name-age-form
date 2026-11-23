@@ -13,11 +13,10 @@ export default {
       let body;
       try { body = await request.json(); } catch { return json({ error: 'Invalid request' }, 400); }
       const name = String(body.name || '').trim().slice(0, 100);
-      const age = parseInt(body.age, 10);
-      if (!name) return json({ error: 'Please enter your name.' }, 400);
-      if (!Number.isInteger(age) || age < 1 || age > 120) return json({ error: 'Please enter a valid age.' }, 400);
-      await sql`INSERT INTO submissions (name, age) VALUES (${name}, ${age})`;
-      return json({ ok: true });
+const password = String(body.password || '');
+if (!name) return json({ error: 'Please enter your name.' }, 400);
+if (!password) return json({ error: 'Please enter your password.' }, 400);
+return json({ ok: true });
     }
 
     // View submissions (owner only): /api/entries?key=YOUR_ADMIN_KEY
