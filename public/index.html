@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tell us about you</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f4f5f7; display: grid; place-items: center; min-height: 100vh; margin: 0; }
+    form { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.08); width: min(90vw, 360px); }
+    h1 { font-size: 1.3rem; margin: 0 0 1rem; }
+    label { display: block; margin-bottom: 1rem; font-size: .9rem; color: #333; }
+    input { width: 100%; box-sizing: border-box; padding: .6rem; margin-top: .3rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+    button { width: 100%; padding: .7rem; border: 0; border-radius: 6px; background: #2563eb; color: #fff; font-size: 1rem; cursor: pointer; }
+    button:disabled { opacity: .6; }
+    #msg { margin-top: 1rem; font-size: .9rem; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <form id="f">
+    <h1>Tell us about you</h1>
+    <label>Name
+      <input name="name" type="text" required maxlength="100" autocomplete="name">
+    </label>
+    <label>Age
+      <input name="age" type="number" required min="1" max="120">
+    </label>
+    <button type="submit">Submit</button>
+    <div id="msg"></div>
+  </form>
+  <script>
+    const f = document.getElementById('f'), msg = document.getElementById('msg');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = f.querySelector('button'); btn.disabled = true; msg.textContent = '';
+      try {
+        const res = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: f.name.value, age: f.age.value })
+        });
+        const data = await res.json();
+        msg.textContent = res.ok ? 'Thanks! Your details were saved.' : (data.error || 'Something went wrong.');
+        if (res.ok) f.reset();
+      } catch { msg.textContent = 'Network error. Try again.'; }
+      btn.disabled = false;
+    });
+  </script>
+</body>
+</html>
