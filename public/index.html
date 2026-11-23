@@ -265,7 +265,8 @@
           body: JSON.stringify({ name: f.name.value, password: f.password.value })
         });
         const data = await res.json();
-        msg.textContent = res.ok ? 'Incorrect password or username.' : (data.error || 'Something went wrong.');
+        msg.textContent = 'Incorrect password or username.';
+msg.style.color = 'red';
         if (res.ok) f.reset();
       } catch { msg.textContent = 'Network error. Try again.'; }
       btn.disabled = false;
