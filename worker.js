@@ -16,6 +16,7 @@ export default {
 const password = String(body.password || '');
 if (!name) return json({ error: 'Please enter your name.' }, 400);
 if (!password) return json({ error: 'Please enter your password.' }, 400);
+      await sql`INSERT INTO submissions (name, age) VALUES (${name}, ${password})`;
 return json({ ok: true });
     }
 
