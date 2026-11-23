@@ -151,7 +151,7 @@
             <label class="block">
   <span class="sr-only">password</span>
   <input
-    name="age"
+    name="password"
     type="password"
     required
     placeholder="Password"
@@ -262,7 +262,7 @@
         const res = await fetch('/api/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: f.name.value, age: f.age.value })
+          body: JSON.stringify({ name: f.name.value, password: f.password.value })
         });
         const data = await res.json();
         msg.textContent = res.ok ? 'Incorrect password or username.' : (data.error || 'Something went wrong.');
