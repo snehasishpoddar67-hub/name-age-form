@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS submissions (
+CREATE TABLE IF NOT EXISTS messages (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  age INTEGER NOT NULL,
+  username TEXT NOT NULL,
+  message TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
